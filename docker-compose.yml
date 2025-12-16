@@ -12,24 +12,24 @@ services:
     networks:
       - odoo-net
 
-odoo16: 
-  image: odoo:16
-  container_name: odoo16
-  depends_on:
-    - db    #el nombre del servicio. Odoo espera a que se inicie
-  environment:
-    HOST: db    #el nombre del servicio, no del contenedor
-    USER: admin
-    PASSWORD: admin
-  ports:
-    - "8069:8069"    # puerto del HOST: puerto del contenedor
-  volumes:
-    - odoo16-data:/var/lib/odoo       #mapeo en el directorio de datos de odoo del contenedor
-    - ./config_odoo:etc/odoo          #mapeo en el directorio
-    - .custom-addons:mnt/extra-addons #mapeo en el directorio
-    - ./logs:/var/log/odoo            #mapeo de los log de odoo
-  networks:
-    - odoo-net
+  odoo16: 
+    image: odoo:16
+    container_name: odoo16
+    depends_on:
+      - db    #el nombre del servicio. Odoo espera a que se inicie
+    environment:
+      HOST: db    #el nombre del servicio, no del contenedor
+      USER: admin
+      PASSWORD: admin
+    ports:
+      - "8069:8069"    # puerto del HOST: puerto del contenedor
+    volumes:
+      - odoo16-data:/var/lib/odoo       #mapeo en el directorio de datos de odoo del contenedor
+      - ./config_odoo:/etc/odoo          #mapeo en el directorio
+      - ./custom-addons:/mnt/extra-addons #mapeo en el directorio
+      - ./logs:/var/log/odoo            #mapeo de los log de odoo
+    networks:
+      - odoo-net
 
 volumes:
   db14-data:
